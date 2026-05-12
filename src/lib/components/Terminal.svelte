@@ -155,13 +155,13 @@
     }
   ];
 
-  /** @type {string[]} */
-   let cmdHistory = [];
-   let histIdx = -1;
+   /** @type {string[]} */
+  let cmdHistory = [];
+  let histIdx = -1;
 
-   /**
- * @param {string} raw
- */
+  /**
+   * @param {string} raw
+   */
   function runCommand(raw) {
     const cmd = raw.trim().toLowerCase();
     if (!cmd) return;
@@ -169,21 +169,19 @@
     cmdHistory = [raw, ...cmdHistory.slice(0, 49)];
     histIdx = -1;
 
+    // Now history accepts the input entry
     history = [...history, { type: 'input', text: raw }];
 
     if (cmd === 'clear') {
       history = [];
       return;
     }
-    
-    /**
- * @type {{ [key: string]: (cmd?: string) => { output?: { text: string, class?: string }[], clear?: boolean } }}
- */
+
     const fn = commands[cmd] || commands[cmd.split(' ')[0]];
     if (fn) {
       const result = fn(cmd);
       if (!result.clear) {
-        history = [...history, { type: 'output', lines: result.output }];
+        history = [...history, { type: 'output', lines: result.output || [] }];
       }
     } else {
       history = [...history, {
@@ -194,8 +192,6 @@
         ]
       }];
     }
-
-
 
     tick().then(() => {
       if (terminalEl) terminalEl.scrollTop = terminalEl.scrollHeight;
