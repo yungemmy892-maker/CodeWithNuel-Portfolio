@@ -1,8 +1,8 @@
-# Alex Chen — Developer Portfolio
+# Emmanuel Okon — Developer Portfolio
 
 A highly interactive, visually impressive developer portfolio built with **SvelteKit**. Designed to feel like an immersive engineering experience, not just a webpage.
 
-**Live Demo:**  
+**Live Demo:** https://code-with-nuel-portfolio.vercel.app/
 **GitHub:** 
 
 ---
