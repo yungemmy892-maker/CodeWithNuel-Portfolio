@@ -565,7 +565,36 @@
   .btn-secondary:hover { border-color: var(--card-color); color: var(--card-accent); }
 
   @media (max-width: 640px) {
-    .projects-grid { grid-template-columns: 1fr; }
-    .modal-content { padding: 1.5rem; }
+  .modal-content {
+    padding: 1.25rem;
   }
+
+  .modal-header {
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .modal-emoji {
+    font-size: 1.5rem;
+    line-height: 1;
+    margin-top: 0.1rem;
+  }
+
+  .modal-title {
+    font-size: 1.1rem;
+    line-height: 1.15;
+    margin-bottom: 0.15rem;
+  }
+
+  .modal-category {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+  }
+
+  .modal-desc {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+}
 </style>

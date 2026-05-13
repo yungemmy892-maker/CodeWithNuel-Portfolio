@@ -23,7 +23,7 @@ export const projects = [
     tech: ['Next.js', 'TypeScript', 'Supabase', 'TailwindCSS', 'PostgreSQL'],
     color: '#06b6d4',
     accentColor: '#22d3ee',
-    demo: 'https://collabflow.vercel.app',
+    demo: 'https://collabflow-kappa.vercel.app/',
     github: 'https://github.com/yungemmy892-maker/Collabflow.git',
     featured: true,
     emoji: '🤝'

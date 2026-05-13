@@ -26,7 +26,7 @@
 
 <nav class="nav" class:scrolled aria-label="Main navigation">
   <div class="nav-inner container">
-    <a href="/" class="logo" aria-label="Alex Chen — Home">
+    <a href="/" class="logo" aria-label="Emmanuel — Home">
       <span class="logo-symbol">⬡</span>
       <span class="logo-text">EO</span>
     </a>
@@ -186,22 +186,38 @@
   .menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   @media (max-width: 768px) {
-    .menu-toggle { display: flex; }
+    .menu-toggle {
+      display: flex;
+      z-index: 101;
+    }
 
     .nav-links {
-      display: none;
       position: fixed;
-      inset: 0;
-      top: 60px;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      height: 100vh;
+
+      display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 1.5rem;
-      background: var(--bg-primary);
+
+      background: rgba(6, 6, 15, 0.96);
+      backdrop-filter: blur(20px);
+
+      transition: right 0.35s ease;
       z-index: 99;
     }
 
-    .nav-links.open { display: flex; }
+    :global([data-theme="light"]) .nav-links {
+      background: rgba(248, 248, 255, 0.96);
+    }
+
+    .nav-links.open {
+      right: 0;
+    }
 
     .nav-link {
       font-size: 1.5rem;

@@ -10,7 +10,7 @@
 
   const socialLinks = [
     { label: 'GitHub', href: 'https://github.com/yungemmy892-maker', icon: '⌥' },
-    { label: 'LinkedIn', href: 'https://tiktok.com/in/CTRL_guy', icon: '◈' },
+    { label: 'Tiktok', href: 'https://tiktok.com/in/CTRL_guy', icon: '◈' },
     { label: 'Twitter', href: 'https://twitter.com/CTRL_guy', icon: '◇' },
     { label: 'Email', href: 'mailto:yungemmy892@gmail.com', icon: '◎' }
   ];
