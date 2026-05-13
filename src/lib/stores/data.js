@@ -18,7 +18,7 @@ export const projects = [
     id: 'collabflow',
     title: 'CollabFlow',
     category: 'fullstack',
-    description: 'A modern collaboration workspace designed for teams to communicate, organize projects, and work together in real time.',
+    description: 'A modern collaboration workspace designed for teams to organize projects, and work together in real time.',
     longDescription: 'CollabFlow focuses on productivity and seamless collaboration with clean UI patterns, responsive layouts, and real-time interaction systems. Built with scalability and smooth user experience in mind, the platform streamlines teamwork through modern web technologies.',
     tech: ['Next.js', 'TypeScript', 'Supabase', 'TailwindCSS', 'PostgreSQL'],
     color: '#06b6d4',
