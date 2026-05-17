@@ -1,49 +1,75 @@
 <script>
   import { onMount } from 'svelte';
 
-  /** @type {HTMLElement | null} */
-  let sectionEl = null;
+  // ─── EmailJS config ────────────────────────────────────────────────────────
+  // 1. Sign up free at https://www.emailjs.com
+  // 2. Add a Gmail service  →  copy your Service ID here
+  // 3. Create a template with variables: {{from_name}}, {{from_email}}, {{message}}
+  //    In the template, set "To Email" to yungemmy892@gmail.com
+  // 4. Account → copy your Public Key
+  const EMAILJS_SERVICE_ID  = 'service_si7sunn';   // e.g. 'service_abc123'
+  const EMAILJS_TEMPLATE_ID = 'template_val0trw';  // e.g. 'template_xyz789'
+  const EMAILJS_PUBLIC_KEY  = '0Jiz9CJbtld33vmmW';   // e.g. 'AbCdEfGhIjKlMnOp'
+  // ──────────────────────────────────────────────────────────────────────────
+
+  let sectionEl;
   let visible = false;
   let name = '';
   let email = '';
   let message = '';
   let status = ''; // 'sending' | 'sent' | 'error'
-  /** @type {Record<string, string>} */
+  let errorMsg = '';
   let errors = {};
 
   function validate() {
-    /** @type {Record<string, string>} */
-    const newErrors = {};
-    if (!name.trim()) newErrors.name = 'Name is required';
-    if (!email.trim()) newErrors.email = 'Email is required';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
-      newErrors.email = 'Invalid email address';
-    if (!message.trim()) newErrors.message = 'Message is required';
-    else if (message.trim().length < 10)
-      newErrors.message = 'Message too short (min. 10 characters)';
-    errors = newErrors; // ✅ triggers reactivity
+    errors = {};
+    if (!name.trim()) errors.name = 'Name is required';
+    if (!email.trim()) errors.email = 'Email is required';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = 'Invalid email address';
+    if (!message.trim()) errors.message = 'Message is required';
+    else if (message.trim().length < 10) errors.message = 'Message is too short';
     return Object.keys(errors).length === 0;
   }
 
   async function handleSubmit() {
     if (!validate()) return;
     status = 'sending';
+    errorMsg = '';
 
-    // Simulate API call – replace with real fetch to your endpoint
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    status = 'sent';
-    name = '';
-    email = '';
-    message = '';
-    errors = {}; // clear errors after success
+    try {
+      const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service_id:  EMAILJS_SERVICE_ID,
+          template_id: EMAILJS_TEMPLATE_ID,
+          user_id:     EMAILJS_PUBLIC_KEY,
+          template_params: {
+            from_name:  name.trim(),
+            from_email: email.trim(),
+            message:    message.trim(),
+            to_email:   'yungemmy892@gmail.com'
+          }
+        })
+      });
+
+      if (res.ok) {
+        status = 'sent';
+        name = email = message = '';
+      } else {
+        const text = await res.text();
+        throw new Error(text || `HTTP ${res.status}`);
+      }
+    } catch (err) {
+      status = 'error';
+      errorMsg = 'Something went wrong. Please try again or email me directly at yungemmy892@gmail.com';
+      console.error('[EmailJS error]', err);
+    }
   }
 
   onMount(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) visible = true;
-      },
+      ([entry]) => { if (entry.isIntersecting) visible = true; },
       { threshold: 0.1 }
     );
     if (sectionEl) observer.observe(sectionEl);
@@ -56,11 +82,10 @@
     <div class="contact-grid" class:visible>
       <div class="contact-info">
         <div class="section-label mono">05 — Contact</div>
-        <h2 class="section-title">
-          Let's Build <span class="accent">Something</span>
-        </h2>
+        <h2 class="section-title">Let's Build <span class="accent">Something</span></h2>
         <p class="contact-desc">
-          Whether you have a project in mind, an opportunity, or just want to talk shop — I'd love to hear from you.
+          Whether you have a project in mind, an opportunity, or just want to talk shop —
+          I'd love to hear from you.
         </p>
 
         <div class="contact-links">
@@ -71,28 +96,18 @@
               <span class="link-value">yungemmy892@gmail.com</span>
             </div>
           </a>
-          <a
-            href="https://github.com/yungemmy892-maker"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="contact-link"
-          >
+          <a href="https://github.com/yungemmy892-maker" target="_blank" rel="noopener noreferrer" class="contact-link">
             <span class="link-icon" aria-hidden="true">⌥</span>
             <div>
               <span class="link-label">GitHub</span>
-              <span class="link-value">@CodeWithNuel</span>
+              <span class="link-value">@yungemmy892-maker</span>
             </div>
           </a>
-          <a
-            href="https://Twitter/in/CTRL_guy"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="contact-link"
-          >
+          <a href="#" target="_blank" rel="noopener noreferrer" class="contact-link">
             <span class="link-icon" aria-hidden="true">◈</span>
             <div>
-              <span class="link-label">Twitter</span>
-              <span class="link-value">in/Emmanuel okon</span>
+              <span class="link-label">Tiktok</span>
+              <span class="link-value">@CTRL_guy</span>
             </div>
           </a>
         </div>
@@ -109,12 +124,20 @@
             <div class="success-icon" aria-hidden="true">✓</div>
             <h3>Message sent!</h3>
             <p>Thanks for reaching out. I'll get back to you within 24 hours.</p>
-            <button class="btn-secondary" on:click={() => (status = '')}>
-              Send another
-            </button>
+            <button class="btn-secondary" on:click={() => status = ''}>Send another</button>
           </div>
         {:else}
-          <form on:submit|preventDefault={handleSubmit} novalidate aria-label="Contact form">
+          <form
+            on:submit|preventDefault={handleSubmit}
+            novalidate
+            aria-label="Contact form"
+          >
+            {#if status === 'error'}
+              <div class="form-error-banner" role="alert">
+                ⚠ {errorMsg}
+              </div>
+            {/if}
+
             <div class="form-row">
               <div class="field" class:has-error={errors.name}>
                 <label for="contact-name">Name</label>
@@ -127,9 +150,7 @@
                   aria-describedby={errors.name ? 'name-error' : undefined}
                 />
                 {#if errors.name}
-                  <span class="field-error" id="name-error" role="alert">
-                    {errors.name}
-                  </span>
+                  <span class="field-error" id="name-error" role="alert">{errors.name}</span>
                 {/if}
               </div>
 
@@ -144,9 +165,7 @@
                   aria-describedby={errors.email ? 'email-error' : undefined}
                 />
                 {#if errors.email}
-                  <span class="field-error" id="email-error" role="alert">
-                    {errors.email}
-                  </span>
+                  <span class="field-error" id="email-error" role="alert">{errors.email}</span>
                 {/if}
               </div>
             </div>
@@ -161,9 +180,7 @@
                 aria-describedby={errors.message ? 'message-error' : undefined}
               ></textarea>
               {#if errors.message}
-                <span class="field-error" id="message-error" role="alert">
-                  {errors.message}
-                </span>
+                <span class="field-error" id="message-error" role="alert">{errors.message}</span>
               {/if}
             </div>
 
@@ -179,13 +196,7 @@
               {:else}
                 Send Message
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path
-                    d="M2 8h12M10 4l4 4-4 4"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
+                  <path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               {/if}
             </button>
@@ -196,19 +207,17 @@
   </div>
 </section>
 
+<!-- Footer -->
 <footer class="footer">
   <div class="container footer-inner">
-    <span class="footer-brand">⬡ Emmanuel okon</span>
-    <span class="footer-copy mono">Built with SvelteKit</span>
+    <span class="footer-brand">⬡ Emmanuel Okon</span>
+    <span class="footer-copy mono">Built with SvelteKit & ❤</span>
     <span class="footer-year mono">{new Date().getFullYear()}</span>
   </div>
 </footer>
 
 <style>
-  /* ===== CONTACT SECTION (component‑specific styles) ===== */
-  .contact-section {
-    padding: 8rem 0 4rem;
-  }
+  .contact-section { padding: 8rem 0 4rem; }
 
   .contact-grid {
     display: grid;
@@ -217,34 +226,19 @@
     align-items: start;
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.7s var(--ease-out) 0.1s,
-                transform 0.7s var(--ease-out) 0.1s;
+    transition: opacity 0.7s var(--ease-out) 0.1s, transform 0.7s var(--ease-out) 0.1s;
   }
-
-  .contact-grid.visible {
-    opacity: 1;
-    transform: none;
-  }
+  .contact-grid.visible { opacity: 1; transform: none; }
 
   .section-label {
-    font-size: 0.8rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent-bright);
-    margin-bottom: 0.75rem;
-    display: block;
+    font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent-bright); margin-bottom: 0.75rem; display: block;
   }
-
   .section-title {
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.03em;
     margin-bottom: 1.25rem;
   }
-
-  .accent {
-    color: var(--accent-bright);
-  }
+  .accent { color: var(--accent-bright); }
 
   .contact-desc {
     font-size: 1rem;
@@ -271,7 +265,6 @@
     border-radius: var(--radius-lg);
     transition: all var(--transition-base);
   }
-
   .contact-link:hover {
     border-color: var(--border-bright);
     background: var(--bg-card-hover);
@@ -316,8 +309,7 @@
   }
 
   .avail-dot {
-    width: 7px;
-    height: 7px;
+    width: 7px; height: 7px;
     background: #10b981;
     border-radius: 50%;
     box-shadow: 0 0 8px #10b981;
@@ -337,11 +329,7 @@
     padding: 2rem;
   }
 
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
+  form { display: flex; flex-direction: column; gap: 1.25rem; }
 
   .form-row {
     display: grid;
@@ -364,8 +352,7 @@
     letter-spacing: 0.08em;
   }
 
-  input,
-  textarea {
+  input, textarea {
     background: var(--bg-secondary);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
@@ -373,18 +360,13 @@
     color: var(--text-primary);
     font-family: var(--font-display);
     font-size: 0.9rem;
-    transition: border-color var(--transition-fast),
-                box-shadow var(--transition-fast);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
     resize: none;
   }
 
-  input::placeholder,
-  textarea::placeholder {
-    color: var(--text-muted);
-  }
+  input::placeholder, textarea::placeholder { color: var(--text-muted); }
 
-  input:focus,
-  textarea:focus {
+  input:focus, textarea:focus {
     border-color: var(--accent);
     box-shadow: 0 0 0 3px var(--accent-glow);
     outline: none;
@@ -418,33 +400,22 @@
     transition: all var(--transition-base);
     box-shadow: 0 0 30px var(--accent-glow);
   }
-
   .submit-btn:hover:not(:disabled) {
     background: var(--accent-bright);
     transform: translateY(-1px);
   }
-
-  .submit-btn:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
+  .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
   .spinner {
-    width: 16px;
-    height: 16px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
     border-top-color: white;
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
   }
+  @keyframes spin { to { transform: rotate(360deg); } }
 
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  /* Success state */
+  /* Success */
   .success-state {
     text-align: center;
     padding: 2.5rem 1.5rem;
@@ -455,16 +426,13 @@
   }
 
   .success-icon {
-    width: 56px;
-    height: 56px;
+    width: 56px; height: 56px;
     border-radius: 50%;
     background: rgba(16, 185, 129, 0.15);
     border: 2px solid #10b981;
     color: #10b981;
     font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
   }
 
   .success-state h3 {
@@ -493,7 +461,6 @@
     transition: all var(--transition-fast);
     margin-top: 0.5rem;
   }
-
   .btn-secondary:hover {
     border-color: var(--accent-bright);
     color: var(--accent-bright);
@@ -505,7 +472,6 @@
     border-top: 1px solid var(--border);
     margin-top: 4rem;
   }
-
   .footer-inner {
     display: flex;
     align-items: center;
@@ -513,30 +479,31 @@
     flex-wrap: wrap;
     gap: 1rem;
   }
-
   .footer-brand {
     font-weight: 700;
     font-size: 1rem;
     color: var(--accent-bright);
   }
-
-  .footer-copy,
-  .footer-year {
+  .footer-copy, .footer-year {
     font-size: 0.8rem;
     color: var(--text-muted);
   }
 
-  /* Responsive */
-  @media (max-width: 900px) {
-    .contact-grid {
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
+  .form-error-banner {
+    background: rgba(248, 113, 113, 0.1);
+    border: 1px solid rgba(248, 113, 113, 0.4);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+    color: #f87171;
+    font-family: var(--font-mono);
+    line-height: 1.5;
   }
 
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  }
   @media (max-width: 640px) {
-    .form-row {
-      grid-template-columns: 1fr;
-    }
+    .form-row { grid-template-columns: 1fr; }
   }
 </style>
