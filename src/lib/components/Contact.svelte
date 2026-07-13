@@ -1,15 +1,12 @@
 <script>
   import { onMount } from 'svelte';
+  import Icon from './Icon.svelte';
 
   // ─── EmailJS config ────────────────────────────────────────────────────────
-  // 1. Sign up free at https://www.emailjs.com
-  // 2. Add a Gmail service  →  copy your Service ID here
-  // 3. Create a template with variables: {{from_name}}, {{from_email}}, {{message}}
-  //    In the template, set "To Email" to yungemmy892@gmail.com
-  // 4. Account → copy your Public Key
-  const EMAILJS_SERVICE_ID  = 'service_si7sunn';   // e.g. 'service_abc123'
-  const EMAILJS_TEMPLATE_ID = 'template_val0trw';  // e.g. 'template_xyz789'
-  const EMAILJS_PUBLIC_KEY  = '0Jiz9CJbtld33vmmW';   // e.g. 'AbCdEfGhIjKlMnOp'
+  
+  const EMAILJS_SERVICE_ID  = 'service_si7sunn';  
+  const EMAILJS_TEMPLATE_ID = 'template_val0trw';  
+  const EMAILJS_PUBLIC_KEY  = '0Jiz9CJbtld33vmmW';   
   // ──────────────────────────────────────────────────────────────────────────
 
   let sectionEl;
@@ -81,7 +78,7 @@
   <div class="container">
     <div class="contact-grid" class:visible>
       <div class="contact-info">
-        <div class="section-label mono">05 — Contact</div>
+        <div class="section-label mono">04 — Contact</div>
         <h2 class="section-title">Let's Build <span class="accent">Something</span></h2>
         <p class="contact-desc">
           Whether you have a project in mind, an opportunity, or just want to talk shop —
@@ -90,21 +87,21 @@
 
         <div class="contact-links">
           <a href="mailto:yungemmy892@gmail.com" class="contact-link">
-            <span class="link-icon" aria-hidden="true">◎</span>
+            <span class="link-icon" aria-hidden="true"><Icon name="mail" size={20} /></span>
             <div>
               <span class="link-label">Email</span>
               <span class="link-value">yungemmy892@gmail.com</span>
             </div>
           </a>
           <a href="https://github.com/yungemmy892-maker" target="_blank" rel="noopener noreferrer" class="contact-link">
-            <span class="link-icon" aria-hidden="true">⌥</span>
+            <span class="link-icon" aria-hidden="true"><Icon name="github" size={20} /></span>
             <div>
               <span class="link-label">GitHub</span>
               <span class="link-value">@yungemmy892-maker</span>
             </div>
           </a>
-          <a href="#" target="_blank" rel="noopener noreferrer" class="contact-link">
-            <span class="link-icon" aria-hidden="true">◈</span>
+          <a href="https://tiktok.com/in/CTRL_guy" target="_blank" rel="noopener noreferrer" class="contact-link">
+            <span class="link-icon" aria-hidden="true"><Icon name="tiktok" size={20} /></span>
             <div>
               <span class="link-label">Tiktok</span>
               <span class="link-value">@CTRL_guy</span>
@@ -121,7 +118,7 @@
       <div class="contact-form-wrap">
         {#if status === 'sent'}
           <div class="success-state" role="status">
-            <div class="success-icon" aria-hidden="true">✓</div>
+            <div class="success-icon" aria-hidden="true"><Icon name="check" size={24} strokeWidth={2} /></div>
             <h3>Message sent!</h3>
             <p>Thanks for reaching out. I'll get back to you within 24 hours.</p>
             <button class="btn-secondary" on:click={() => status = ''}>Send another</button>
@@ -134,7 +131,8 @@
           >
             {#if status === 'error'}
               <div class="form-error-banner" role="alert">
-                ⚠ {errorMsg}
+                <Icon name="alert" size={16} strokeWidth={1.8} />
+                <span>{errorMsg}</span>
               </div>
             {/if}
 
@@ -210,8 +208,8 @@
 <!-- Footer -->
 <footer class="footer">
   <div class="container footer-inner">
-    <span class="footer-brand">⬡ Emmanuel Okon</span>
-    <span class="footer-copy mono">Built with SvelteKit & ❤</span>
+    <span class="footer-brand"><Icon name="hexagon" size={16} strokeWidth={2} /> Emmanuel Okon</span>
+    <span class="footer-copy mono">Built with SvelteKit</span>
     <span class="footer-year mono">{new Date().getFullYear()}</span>
   </div>
 </footer>
@@ -272,10 +270,12 @@
   }
 
   .link-icon {
-    font-size: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     color: var(--accent-bright);
     width: 24px;
-    text-align: center;
+    flex-shrink: 0;
   }
 
   .link-label {
@@ -431,7 +431,6 @@
     background: rgba(16, 185, 129, 0.15);
     border: 2px solid #10b981;
     color: #10b981;
-    font-size: 1.5rem;
     display: flex; align-items: center; justify-content: center;
   }
 
@@ -480,6 +479,9 @@
     gap: 1rem;
   }
   .footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     font-weight: 700;
     font-size: 1rem;
     color: var(--accent-bright);
@@ -490,6 +492,9 @@
   }
 
   .form-error-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
     background: rgba(248, 113, 113, 0.1);
     border: 1px solid rgba(248, 113, 113, 0.4);
     border-radius: var(--radius-md);
@@ -498,6 +503,11 @@
     color: #f87171;
     font-family: var(--font-mono);
     line-height: 1.5;
+  }
+
+  .form-error-banner :global(svg) {
+    flex-shrink: 0;
+    margin-top: 0.15rem;
   }
 
   @media (max-width: 900px) {

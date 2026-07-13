@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import Icon from './Icon.svelte';
 
   /** @type {HTMLElement | undefined} */
   let section;
@@ -35,18 +36,18 @@
       <!-- Left: text -->
       <div class="about-text">
         <p>
-           I'm a frontend engineer who gravitated toward building for the web because I love turning ideas into experiences people can actually feel. 
-          Over the past few years
+          I'm a frontend engineer who gravitated toward building for the web because I love turning
+          ideas into experiences people can actually feel from the first click to the last pixel.
         </p>
         <p>
-          My focus sits at the intersection of <strong>clean engineering</strong> and <strong>intentional design</strong>
-           I care about how systems scale just as much as how interfaces move, feel, and guide users. Performance, usability, 
-           and motion are all part of the same conversation for me.
+          My focus sits at the intersection of <strong>clean engineering</strong> and <strong>intentional design</strong>.
+          I care about how systems scale just as much as how interfaces move, feel, and guide users. Performance, usability,
+          and motion are all part of the same conversation for me.
         </p>
         <p>
-         Outside of shipping code, I'm building a Bible app called <strong>RhemaTrem</strong> 
-          a tool designed to instantly identify and surface Bible verses in a meaningful and intuitive way. 
-          I also experiment with motion design, study modern UI systems, and keep exploring better ways to build for the web.
+          Outside of client work, I'm building a Bible app called <strong>VerseID</strong> 
+          a tool designed to instantly identify and surface Bible verses in a meaningful and intuitive way.
+          I also study modern UI systems and keep exploring better ways to build for the web.
         </p>
 
         <div class="about-tags">
@@ -72,7 +73,7 @@
             <!-- Upload hint shown only when no image -->
             {#if !profileImg}
               <div class="upload-hint" aria-hidden="true">
-                <span>📷</span>
+                <Icon name="camera" size={18} strokeWidth={1.6} />
                 <span class="hint-text">Add photo</span>
               </div>
             {/if}

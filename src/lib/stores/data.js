@@ -11,7 +11,7 @@ export const projects = [
     demo: 'https://neuron-markets.vercel.app/',
     github: 'https://github.com/yungemmy892-maker/Neuron-Markets.git',
     featured: true,
-    emoji: '📈'
+    icon: 'bar-chart'
   },
 
   {
@@ -26,7 +26,7 @@ export const projects = [
     demo: 'https://collabflow-kappa.vercel.app/',
     github: 'https://github.com/yungemmy892-maker/Collabflow.git',
     featured: true,
-    emoji: '🤝'
+    icon: 'users'
   },
 
   {
@@ -41,37 +41,37 @@ export const projects = [
     demo: 'https://invoice-app-kappa-pied.vercel.app/',
     github: 'https://github.com/yungemmy892-maker/InvoiceApp.git',
     featured: true,
-    emoji: '🧾'
+    icon: 'file-text'
   },
 
   {
-    id: 'whisper',
-    title: 'Whisper',
-    category: 'creative',
-    description: 'Every message is encrypted on your device before it leaves, and decrypted only on the recipient\'s device.',
-    longDescription: 'Whisper explores modern communication design through elegant interfaces, responsive animations, and real-time messaging concepts. The project highlights frontend craftsmanship, UI consistency, and interactive user experiences.',
-    tech: ['TypeScript', 'WebSockets', 'TailwindCSS'],
-    color: '#ec4899',
-    accentColor: '#f472b6',
-    demo: 'https://whisper-iota-wine.vercel.app/',
-    github: 'https://github.com/yungemmy892-maker/Whisper.git',
-    featured: false,
-    emoji: '💬'
+    id: 'verseid',
+    title: 'VerseID',
+    category: 'fullstack',
+    description: 'Shazam for Bible verses - speak or type any fragment and VerseID finds the exact book, chapter, verse and translation.',
+    longDescription: 'VerseID identifies scripture from a spoken or typed fragment in seconds. Speech is transcribed locally in the browser, then matched against multiple translations (KJV, WEB, DRA, ASV) using fuzzy text matching and semantic search, returning a result with a confidence score. Built as a calm, fast daily-use tool rather than a reference app you have to dig through.',
+    tech: ['React', 'TanStack Start', 'Django', 'MongoDB', 'FAISS', 'Web Speech API'],
+    color: '#8b5cf6',
+    accentColor: '#c4b5fd',
+    demo: 'https://verseid.top',
+    github: null,
+    featured: true,
+    icon: 'mic'
   },
 
   {
-    id: 'lumen-ai',
-    title: 'Lumen AI',
+    id: 'querycraft',
+    title: 'QueryCraft',
     category: 'tool',
-    description: 'A Chrome Extension + Django backend that uses AI to instantly summarize any webpage into:  Bullet points, Key insights, Reading time, Highlights',
-    longDescription: 'Lumen AI blends modern frontend architecture with AI-powered experiences to create a fast and intuitive productivity environment. The project focuses on clean design systems, responsive interactions, and scalable AI integration.',
-    tech: ['Html', 'CSS', 'JavaScript', 'Python', 'Gemini API', 'Groq API'],
-    color: '#f59e0b',
-    accentColor: '#fbbf24',
-    demo: 'https://lumen-ai-sand.vercel.app/',
-    github: 'https://github.com/yungemmy892-maker/LumenAI.git',
+    description: 'A browser-based visual SQL query builder and dataset explorer - build nested conditions and see the SQL and results update live.',
+    longDescription: 'QueryCraft lets you explore a dataset schema and build complex, deeply nested AND/OR query conditions visually, without writing SQL by hand. A live SQL preview updates as the query is built, results run against the selected dataset, and past queries are kept in a searchable history. Supports importing and exporting query sets across multiple sample schemas.',
+    tech: ['React', 'TypeScript', 'TailwindCSS'],
+    color: '#14b8a6',
+    accentColor: '#2dd4bf',
+    demo: 'https://query-craft-beta.vercel.app/',
+    github: 'https://github.com/yungemmy892-maker/Query-Craft.git',
     featured: false,
-    emoji: '✨'
+    icon: 'database'
   }
 ];
 
@@ -79,14 +79,13 @@ export const categories = [
   { id: 'all', label: 'All Projects' },
   { id: 'fullstack', label: 'Full-Stack' },
   { id: 'frontend', label: 'Frontend' },
-  { id: 'tool', label: 'Tools' },
-  { id: 'creative', label: 'Creative' }
+  { id: 'tool', label: 'Tools' }
 ];
 
 export const skills = [
   {
     category: 'Frontend',
-    icon: '⬡',
+    icon: 'layers',
     items: [
       { name: 'Svelte / SvelteKit' },
       { name: 'TypeScript' },
@@ -97,7 +96,7 @@ export const skills = [
   },
   {
     category: 'Backend',
-    icon: '◈',
+    icon: 'server',
     items: [
       { name: 'Node.js / Bun' },
       { name: 'Python / FastAPI' },
@@ -106,7 +105,7 @@ export const skills = [
   },
   {
     category: 'Infrastructure',
-    icon: '◎',
+    icon: 'cloud',
     items: [
       { name: 'Docker / K8s', level: 82 },
       { name: 'Cloudflare / Vercel', level: 90 },

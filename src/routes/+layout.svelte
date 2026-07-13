@@ -13,10 +13,11 @@
 </script>
 
 <svelte:head>
-  <title>Emmanuel Okon — Developer Portfolio</title>
+  <title>Emmanuel Okon - Developer Portfolio</title>
 </svelte:head>
 
 <div class="grid-bg" aria-hidden="true"></div>
+<div class="aurora" aria-hidden="true"></div>
 <CustomCursor />
 <Nav />
 <ThemeToggle />

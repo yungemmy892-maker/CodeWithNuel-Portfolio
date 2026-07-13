@@ -1,6 +1,7 @@
 <script>
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
+  import Icon from './Icon.svelte';
 
   let scrolled = false;
   let menuOpen = false;
@@ -9,7 +10,6 @@
     { href: '#about', label: 'About' },
     { href: '#projects', label: 'Projects' },
     { href: '#skills', label: 'Skills' },
-    { href: '#terminal', label: 'Terminal' },
     { href: '#contact', label: 'Contact' }
   ];
 
@@ -27,7 +27,7 @@
 <nav class="nav" class:scrolled aria-label="Main navigation">
   <div class="nav-inner container">
     <a href="/" class="logo" aria-label="Emmanuel — Home">
-      <span class="logo-symbol">⬡</span>
+      <span class="logo-symbol"><Icon name="hexagon" size={20} strokeWidth={2} /></span>
       <span class="logo-text">EO</span>
     </a>
 
@@ -53,7 +53,10 @@
       {/each}
       <li>
         <a href="/resume.pdf" class="nav-cta" download aria-label="Download resume PDF">
-          Resume ↗
+          Resume
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 12 12 4M6 4h6v6"/>
+          </svg>
         </a>
       </li>
     </ul>
@@ -115,8 +118,8 @@
   }
 
   .logo-symbol {
+    display: inline-flex;
     color: var(--accent-bright);
-    font-size: 1.25rem;
     line-height: 1;
   }
 
@@ -146,6 +149,9 @@
   }
 
   .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
     padding: 0.5rem 1rem;
     border-radius: var(--radius-md);
     font-size: 0.875rem;

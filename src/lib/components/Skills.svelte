@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import Icon from './Icon.svelte';
 
   /** @type {HTMLElement | undefined} */
   let sectionEl;
@@ -8,22 +9,22 @@
   const techGroups = [
     {
       category: 'Frontend',
-      icon: '⬡',
-      items: ['Svelte / SvelteKit', 'TypeScript', 'JavaScript', 'React', 'Next.js', 'HTML', 'CSS / SCSS', 'Three.js']
+      icon: 'layers',
+      items: ['Svelte / SvelteKit', 'TypeScript', 'JavaScript', 'React', 'Next.js', 'HTML', 'CSS / SCSS', 'Tailwind', 'Vue']
     },
     {
       category: 'Backend',
-      icon: '◈',
-      items: ['Node.js', 'Python', 'FastAPI', 'PostgreSQL']
+      icon: 'server',
+      items: ['Node.js', 'Python', 'FastAPI', 'PostgreSQL', 'MongoDB']
     },
     {
       category: 'Infrastructure',
-      icon: '◎',
-      items: ['Docker', 'Vercel', 'GitHub Actions']
+      icon: 'cloud',
+      items: ['Docker', 'Vercel', 'GitHub Actions', 'Render', 'PXXl']
     },
     {
       category: 'Tools & More',
-      icon: '◇',
+      icon: 'tool',
       items: ['Git', 'Figma', 'GraphQL', 'Prisma','Zod', 'Playwright', 'Vitest', 'Webpack', 'Vite']
     }
   ];
@@ -53,7 +54,7 @@
       {#each techGroups as group, gi}
         <div class="tech-group" style="--group-delay: {gi * 0.1}s">
           <div class="group-header">
-            <span class="group-icon" aria-hidden="true">{group.icon}</span>
+            <span class="group-icon" aria-hidden="true"><Icon name={group.icon} size={20} strokeWidth={1.6} /></span>
             <h3 class="group-title">{group.category}</h3>
           </div>
           <div class="tag-cloud" role="list" aria-label="{group.category} technologies">
@@ -136,7 +137,7 @@
   }
 
   .group-icon {
-    font-size: 1.25rem;
+    display: inline-flex;
     color: var(--accent-bright);
     line-height: 1;
   }

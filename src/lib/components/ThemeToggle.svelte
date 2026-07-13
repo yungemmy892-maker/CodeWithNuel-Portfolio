@@ -1,5 +1,6 @@
 <script>
   import { theme } from '$lib/stores/theme.js';
+  import Icon from './Icon.svelte';
 </script>
 
 <button
@@ -10,9 +11,9 @@
 >
   <span class="icon" aria-hidden="true">
     {#if $theme === 'dark'}
-      ☀
+      <Icon name="sun" size={20} strokeWidth={1.8} />
     {:else}
-      ☾
+      <Icon name="moon" size={20} strokeWidth={1.8} />
     {/if}
   </span>
 </button>

@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  import Icon from './Icon.svelte';
 
   let mounted = false;
 
@@ -9,10 +10,10 @@
   let animFrame;
 
   const socialLinks = [
-    { label: 'GitHub', href: 'https://github.com/yungemmy892-maker', icon: '⌥' },
-    { label: 'Tiktok', href: 'https://tiktok.com/in/CTRL_guy', icon: '◈' },
-    { label: 'Twitter', href: 'https://twitter.com/CTRL_guy', icon: '◇' },
-    { label: 'Email', href: 'mailto:yungemmy892@gmail.com', icon: '◎' }
+    { label: 'GitHub', href: 'https://github.com/yungemmy892-maker', icon: 'github' },
+    { label: 'Tiktok', href: 'https://tiktok.com/in/CTRL_guy', icon: 'tiktok' },
+    { label: 'Twitter', href: 'https://twitter.com/CTRL_guy', icon: 'twitter' },
+    { label: 'Email', href: 'mailto:yungemmy892@gmail.com', icon: 'mail' }
   ];
 
   const roles = ['Frontend Engineer', 'Frontend Architect', 'Creative Developer'];
@@ -180,7 +181,7 @@
           target={link.href.startsWith('http') ? '_blank' : undefined}
           rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
         >
-          <span aria-hidden="true">{link.icon}</span>
+          <span class="social-icon"><Icon name={link.icon} size={16} /></span>
           <span class="social-label">{link.label}</span>
         </a>
       {/each}
@@ -386,6 +387,11 @@
     color: var(--accent-bright);
     background: rgba(124, 58, 237, 0.08);
     border-color: var(--border);
+  }
+
+  .social-icon {
+    display: inline-flex;
+    align-items: center;
   }
 
   .social-label {
