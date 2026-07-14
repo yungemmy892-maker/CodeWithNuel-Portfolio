@@ -37,7 +37,7 @@
       <div class="about-text">
         <p>
           I'm a frontend engineer who gravitated toward building for the web because I love turning
-          ideas into experiences people can actually feel — from the first click to the last pixel.
+          ideas into experiences people can actually feel from the first click to the last pixel.
         </p>
         <p>
           My focus sits at the intersection of <strong>clean engineering</strong> and <strong>intentional design</strong>.
@@ -45,7 +45,7 @@
           and motion are all part of the same conversation for me.
         </p>
         <p>
-          Outside of client work, I'm building a Bible app called <strong>RhemaTrem</strong> —
+          Outside of client work, I'm building a Bible app called <strong>VerseID</strong>
           a tool designed to instantly identify and surface Bible verses in a meaningful and intuitive way.
           I also study modern UI systems and keep exploring better ways to build for the web.
         </p>

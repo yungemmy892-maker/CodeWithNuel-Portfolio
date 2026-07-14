@@ -616,66 +616,239 @@
   .btn-secondary:hover { border-color: var(--card-color); color: var(--card-accent); }
 
   @media (max-width: 640px) {
-  .modal-content {
-    padding: 1.25rem;
+
+  /* ---------- Section ---------- */
+
+  .projects-section {
+    padding: 3.25rem 0;
   }
 
+  .section-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .section-desc {
+    max-width: 100%;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  /* ---------- Filters ---------- */
+
+  .filter-bar {
+    margin-bottom: 1.25rem;
+    gap: 0.35rem;
+  }
+
+  .filter-btn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  /* ---------- Cards ---------- */
+
+  .projects-grid {
+    gap: 0.85rem;
+  }
+
+  .project-card {
+    width: 100%;
+    min-width: 0;
+    padding: 1.1rem;
+    gap: 0.75rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .card-emoji {
+    width: 36px;
+    height: 36px;
+  }
+
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-desc {
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .card-tech {
+    gap: 0.3rem;
+  }
+
+  .tech-tag {
+    font-size: 0.68rem;
+    padding: 0.22rem 0.5rem;
+  }
+
+  .card-links {
+    opacity: 1;
+    transform: none;
+  }
+
+  .card-expand {
+    font-size: 0.8rem;
+  }
+
+  /* ---------- Modal Overlay ---------- */
+
+  .modal-overlay {
+    padding: 1rem;
+    align-items: center;      /* Center vertically */
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 100%;
+    max-height: 90vh;
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+
+    padding: 1rem;
+    margin: auto;             /* Remove the top margin */
+
+    border-radius: 20px;
+}
+
+  .modal-content::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .modal-content::-webkit-scrollbar-thumb {
+    background: rgba(150,150,150,.35);
+    border-radius: 20px;
+  }
+
+  .modal-content {
+    scrollbar-width: thin;
+  }
+
+  /* ---------- Close Button ---------- */
+
+  .modal-close {
+    width: 34px;
+    height: 34px;
+
+    top: 0.8rem;
+    right: 0.8rem;
+  }
+
+  /* ---------- Header ---------- */
+
   .modal-header {
-    gap: 0.6rem;
+    gap: 0.75rem;
     margin-bottom: 1rem;
+    padding-right: 2.25rem;
   }
 
   .modal-emoji {
-    width: 40px;
-    height: 40px;
-    margin-top: 0.1rem;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
   }
 
   .modal-title {
-    font-size: 1.1rem;
-    line-height: 1.15;
+    font-size: 1.15rem;
+    line-height: 1.2;
     margin-bottom: 0.15rem;
   }
 
   .modal-category {
-    font-size: 0.68rem;
-    letter-spacing: 0.06em;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
   }
+
+  /* ---------- Description ---------- */
 
   .modal-desc {
     font-size: 0.88rem;
     line-height: 1.6;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  /* ---------- Stack ---------- */
+
+  .modal-tech {
+    margin-bottom: 1.2rem;
+  }
+
+  .modal-tech-label {
+    margin-bottom: 0.6rem;
+    font-size: 0.72rem;
+  }
+
+  .modal-tech-list {
+    gap: 0.4rem;
+  }
+
+  .tech-tag.large {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.7rem;
+  }
+
+  /* ---------- Buttons ---------- */
+
+  .modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .modal-actions a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    min-height: 48px;
+    font-size: 0.9rem;
   }
 }
 
-  @media (max-width: 900px) {
-    .projects-section { padding: 5.5rem 0; }
-    .projects-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+/* Extra Small Phones */
+
+@media (max-width: 380px) {
+
+  .project-card {
+    padding: 1rem;
   }
 
-  @media (max-width: 640px) {
-    .projects-section { padding: 3.25rem 0; }
-    .section-header { margin-bottom: 1.25rem; }
-    .section-title { font-size: 1.8rem; margin-bottom: 0.4rem; }
-    .section-desc { max-width: 100%; font-size: 0.95rem; line-height: 1.55; }
-    .filter-bar { margin-bottom: 1.25rem; gap: 0.35rem; }
-    .filter-btn { padding: 0.38rem 0.7rem; font-size: 0.78rem; }
-    .projects-grid { gap: 0.85rem; }
-    .project-card { padding: 1.1rem; border-radius: var(--radius-lg); gap: 0.75rem; width: 100%; min-width: 0; }
-    .card-emoji { width: 36px; height: 36px; }
-    .card-title { font-size: 1rem; }
-    .card-desc { font-size: 0.82rem; line-height: 1.55; }
-    .card-tech { gap: 0.3rem; }
-    .tech-tag { font-size: 0.68rem; padding: 0.22rem 0.5rem; }
-    .card-links { opacity: 1; transform: none; }
-    .card-expand { font-size: 0.8rem; }
-    .modal-actions { flex-direction: column; }
-    .modal-actions a { justify-content: center; width: 100%; }
+  .card-title {
+    font-size: 0.95rem;
   }
 
-  @media (max-width: 380px) {
-    .project-card { padding: 1.1rem; }
-    .card-title { font-size: 1.05rem; }
+  .modal-content {
+    padding: 0.9rem;
   }
+
+  .modal-title {
+    font-size: 1.05rem;
+  }
+
+  .modal-desc {
+    font-size: 0.84rem;
+  }
+
+  .tech-tag.large {
+    font-size: 0.68rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    font-size: 0.85rem;
+    min-height: 46px;
+  }
+}
 </style>

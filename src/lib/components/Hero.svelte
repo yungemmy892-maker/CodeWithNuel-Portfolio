@@ -156,7 +156,7 @@
 
     <p class="hero-bio">
       I build <strong>high-performance web experiences</strong> at the intersection of
-      engineering and design. From pixel-perfect interfaces to scalable architectures —
+      engineering and design. From pixel-perfect interfaces to scalable architectures
       I care about every layer of the stack.
     </p>
 

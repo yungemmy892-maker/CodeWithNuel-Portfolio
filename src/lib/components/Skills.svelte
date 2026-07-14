@@ -10,17 +10,17 @@
     {
       category: 'Frontend',
       icon: 'layers',
-      items: ['Svelte / SvelteKit', 'TypeScript', 'JavaScript', 'React', 'Next.js', 'HTML', 'CSS / SCSS', 'Three.js']
+      items: ['Svelte / SvelteKit', 'TypeScript', 'JavaScript', 'React', 'Next.js', 'HTML', 'CSS / SCSS', 'Tailwind CSS', 'Vue']
     },
     {
       category: 'Backend',
       icon: 'server',
-      items: ['Node.js', 'Python', 'FastAPI', 'PostgreSQL']
+      items: ['Node.js', 'Python', 'FastAPI', 'PostgreSQL', 'MongoDB']
     },
     {
       category: 'Infrastructure',
       icon: 'cloud',
-      items: ['Docker', 'Vercel', 'GitHub Actions']
+      items: ['Docker', 'Vercel', 'GitHub Actions', 'PXXl', 'Render', 'Supabase']
     },
     {
       category: 'Tools & More',
