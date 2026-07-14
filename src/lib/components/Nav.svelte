@@ -92,13 +92,14 @@
 
   .nav.scrolled {
     padding: 0.75rem 0;
-    background: rgba(6, 6, 15, 0.85);
-    backdrop-filter: blur(20px);
+    background: rgba(5, 5, 8, 0.72);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
     border-bottom: 1px solid var(--border);
   }
 
   :global([data-theme="light"]) .nav.scrolled {
-    background: rgba(248, 248, 255, 0.85);
+    background: rgba(248, 248, 252, 0.75);
   }
 
   .nav-inner {
@@ -156,15 +157,17 @@
     border-radius: var(--radius-md);
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--accent-bright);
-    border: 1px solid var(--border-bright);
+    color: white;
+    background: var(--gradient-brand);
+    border: 1px solid transparent;
     transition: all var(--transition-fast);
     font-family: var(--font-mono);
   }
 
   .nav-cta:hover {
-    background: var(--accent-glow);
-    border-color: var(--accent-bright);
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px -8px var(--accent-glow);
   }
 
   .menu-toggle {
@@ -210,15 +213,15 @@
       justify-content: center;
       gap: 1.5rem;
 
-      background: rgba(6, 6, 15, 0.96);
-      backdrop-filter: blur(20px);
+      background: rgba(5, 5, 8, 0.97);
+      backdrop-filter: var(--glass-blur);
 
       transition: right 0.35s ease;
       z-index: 99;
     }
 
     :global([data-theme="light"]) .nav-links {
-      background: rgba(248, 248, 255, 0.96);
+      background: rgba(248, 248, 252, 0.97);
     }
 
     .nav-links.open {

@@ -37,7 +37,7 @@
       <div class="about-text">
         <p>
           I'm a frontend engineer who gravitated toward building for the web because I love turning
-          ideas into experiences people can actually feel from the first click to the last pixel.
+          ideas into experiences people can actually feel — from the first click to the last pixel.
         </p>
         <p>
           My focus sits at the intersection of <strong>clean engineering</strong> and <strong>intentional design</strong>.
@@ -45,7 +45,7 @@
           and motion are all part of the same conversation for me.
         </p>
         <p>
-          Outside of client work, I'm building a Bible app called <strong>VerseID</strong> 
+          Outside of client work, I'm building a Bible app called <strong>RhemaTrem</strong> —
           a tool designed to instantly identify and surface Bible verses in a meaningful and intuitive way.
           I also study modern UI systems and keep exploring better ways to build for the web.
         </p>
@@ -63,7 +63,7 @@
         <div class="profile-card">
           <div class="avatar-wrap">
             {#if profileImg}
-              <img src={profileImg} alt="Profile photo" class="avatar-img" />
+              <img src={profileImg} alt="Emmanuel Okon" class="avatar-img" />
             {:else}
               <div class="avatar-placeholder" aria-label="Profile photo placeholder">
                 <span class="avatar-initials">EO</span>
@@ -171,7 +171,7 @@
   .tag:hover {
     border-color: var(--accent-bright);
     color: var(--accent-bright);
-    background: rgba(124, 58, 237, 0.08);
+    background: var(--accent-glow);
   }
 
   /* Profile card */
@@ -186,12 +186,14 @@
     align-items: center;
     gap: 1.25rem;
     background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
     padding: 1.25rem 1.5rem;
-    transition: border-color var(--transition-base);
+    transition: border-color var(--transition-base), background var(--transition-base);
   }
-  .profile-card:hover { border-color: var(--border-bright); }
+  .profile-card:hover { border-color: var(--border-bright); background: var(--bg-card-hover); }
 
   .avatar-wrap {
     position: relative;
@@ -241,7 +243,7 @@
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    background: rgba(124, 58, 237, 0.7);
+    background: rgba(139, 92, 246, 0.78);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -311,7 +313,7 @@
   /* Stats */
   .stats-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.75rem;
   }
 
@@ -345,11 +347,25 @@
   }
 
   @media (max-width: 900px) {
+    .about { padding: 5.5rem 0; }
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .about-visual { order: -1; }
-    .stats-grid { grid-template-columns: repeat(4, 1fr); }
+    .stats-grid { grid-template-columns: repeat(3, 1fr); }
   }
-  @media (max-width: 480px) {
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 640px) {
+    .about { padding: 4rem 0; }
+    .section-header { margin-bottom: 2.5rem; }
+    .section-title { line-height: 1.15; }
+    .about-text p { font-size: 0.95rem; line-height: 1.7; }
+    .profile-card { padding: 1rem 1.1rem; gap: 1rem; }
+    .avatar-wrap { width: 60px; height: 60px; }
+    .profile-name { font-size: 1rem; }
+    .stat-card { padding: 0.85rem 0.4rem; }
+    .stat-value { font-size: 1.2rem; }
+  }
+  @media (max-width: 380px) {
+    .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .stat-value { font-size: 1.05rem; }
+    .stat-label { font-size: 0.6rem; }
   }
 </style>

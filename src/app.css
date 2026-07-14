@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
 /* ===== DESIGN SYSTEM ===== */
 :root {
   /* Colors — deep space base with a violet → cyan signature gradient */
@@ -20,8 +22,8 @@
   --border-bright: rgba(167, 139, 250, 0.45);
   --glass-blur: blur(20px);
   --grid-color: rgba(139, 92, 246, 0.05);
-  --font-display: 'Syne', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -68,7 +70,12 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 100px;
+  overflow-x: hidden;
+}
+
+section[id] {
+  scroll-margin-top: 100px;
 }
 
 body {
@@ -197,6 +204,14 @@ img {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--space-lg);
+}
+
+@media (max-width: 640px) {
+  .container { padding: 0 1.25rem; }
+}
+
+@media (max-width: 380px) {
+  .container { padding: 0 1rem; }
 }
 
 .sr-only {

@@ -285,8 +285,8 @@
   }
 
   .filter-btn.active {
-    background: var(--accent);
-    border-color: var(--accent);
+    background: var(--gradient-brand);
+    border-color: transparent;
     color: white;
   }
 
@@ -301,20 +301,26 @@
   /* Grid */
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 1.5rem;
+    align-items: start;
   }
 
   /* Card */
   .project-card {
     position: relative;
     background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
     padding: 1.75rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
+    min-width: 0;
+    justify-self: stretch;
     overflow: hidden;
     cursor: default;
     transition: all var(--transition-base);
@@ -333,9 +339,9 @@
 
   .project-card:hover {
     background: var(--bg-card-hover);
-    border-color: var(--card-color);
+    border-color: color-mix(in srgb, var(--card-color) 55%, transparent);
     transform: translateY(-4px);
-    box-shadow: 0 20px 60px -10px color-mix(in srgb, var(--card-color) 30%, transparent);
+    box-shadow: 0 24px 60px -16px color-mix(in srgb, var(--card-color) 45%, transparent);
   }
 
   .project-card.featured {
@@ -488,8 +494,10 @@
   }
 
   .modal-content {
-    background: var(--bg-card);
-    border: 1px solid var(--card-color);
+    background: var(--bg-secondary);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid color-mix(in srgb, var(--card-color) 45%, var(--border));
     border-radius: var(--radius-xl);
     padding: 2.5rem;
     max-width: 600px;
@@ -583,7 +591,7 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    background: var(--card-color);
+    background: linear-gradient(120deg, var(--card-color), var(--card-accent));
     color: white;
     border-radius: var(--radius-md);
     font-weight: 600;
@@ -640,4 +648,34 @@
     margin-bottom: 1.5rem;
   }
 }
+
+  @media (max-width: 900px) {
+    .projects-section { padding: 5.5rem 0; }
+    .projects-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+  }
+
+  @media (max-width: 640px) {
+    .projects-section { padding: 3.25rem 0; }
+    .section-header { margin-bottom: 1.25rem; }
+    .section-title { font-size: 1.8rem; margin-bottom: 0.4rem; }
+    .section-desc { max-width: 100%; font-size: 0.95rem; line-height: 1.55; }
+    .filter-bar { margin-bottom: 1.25rem; gap: 0.35rem; }
+    .filter-btn { padding: 0.38rem 0.7rem; font-size: 0.78rem; }
+    .projects-grid { gap: 0.85rem; }
+    .project-card { padding: 1.1rem; border-radius: var(--radius-lg); gap: 0.75rem; width: 100%; min-width: 0; }
+    .card-emoji { width: 36px; height: 36px; }
+    .card-title { font-size: 1rem; }
+    .card-desc { font-size: 0.82rem; line-height: 1.55; }
+    .card-tech { gap: 0.3rem; }
+    .tech-tag { font-size: 0.68rem; padding: 0.22rem 0.5rem; }
+    .card-links { opacity: 1; transform: none; }
+    .card-expand { font-size: 0.8rem; }
+    .modal-actions { flex-direction: column; }
+    .modal-actions a { justify-content: center; width: 100%; }
+  }
+
+  @media (max-width: 380px) {
+    .project-card { padding: 1.1rem; }
+    .card-title { font-size: 1.05rem; }
+  }
 </style>

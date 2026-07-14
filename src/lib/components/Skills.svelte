@@ -10,17 +10,17 @@
     {
       category: 'Frontend',
       icon: 'layers',
-      items: ['Svelte / SvelteKit', 'TypeScript', 'JavaScript', 'React', 'Next.js', 'HTML', 'CSS / SCSS', 'Tailwind', 'Vue']
+      items: ['Svelte / SvelteKit', 'TypeScript', 'JavaScript', 'React', 'Next.js', 'HTML', 'CSS / SCSS', 'Three.js']
     },
     {
       category: 'Backend',
       icon: 'server',
-      items: ['Node.js', 'Python', 'FastAPI', 'PostgreSQL', 'MongoDB']
+      items: ['Node.js', 'Python', 'FastAPI', 'PostgreSQL']
     },
     {
       category: 'Infrastructure',
       icon: 'cloud',
-      items: ['Docker', 'Vercel', 'GitHub Actions', 'Render', 'PXXl']
+      items: ['Docker', 'Vercel', 'GitHub Actions']
     },
     {
       category: 'Tools & More',
@@ -122,12 +122,14 @@
 
   .tech-group {
     background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
     border: 1px solid var(--border);
     border-radius: var(--radius-xl);
     padding: 1.75rem;
-    transition: border-color var(--transition-base);
+    transition: border-color var(--transition-base), background var(--transition-base);
   }
-  .tech-group:hover { border-color: var(--border-bright); }
+  .tech-group:hover { border-color: var(--border-bright); background: var(--bg-card-hover); }
 
   .group-header {
     display: flex;
@@ -183,11 +185,16 @@
   .tech-tag:hover {
     color: var(--accent-bright);
     border-color: var(--border-bright);
-    background: rgba(124, 58, 237, 0.1);
+    background: var(--accent-glow);
   }
 
+  @media (max-width: 900px) {
+    .skills-section { padding: 5.5rem 0; }
+  }
   @media (max-width: 640px) {
-    .tech-grid { grid-template-columns: 1fr 1fr; }
+    .skills-section { padding: 4rem 0; }
+    .tech-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .tech-group { padding: 1.25rem; }
   }
   @media (max-width: 400px) {
     .tech-grid { grid-template-columns: 1fr; }

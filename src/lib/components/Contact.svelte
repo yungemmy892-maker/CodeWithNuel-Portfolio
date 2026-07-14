@@ -9,13 +9,15 @@
   const EMAILJS_PUBLIC_KEY  = '0Jiz9CJbtld33vmmW';   
   // ──────────────────────────────────────────────────────────────────────────
 
-  let sectionEl;
+  /** @type {HTMLElement | null} */
+  let sectionEl = null;
   let visible = false;
   let name = '';
   let email = '';
   let message = '';
   let status = ''; // 'sending' | 'sent' | 'error'
   let errorMsg = '';
+  /** @type {{name?: string; email?: string; message?: string}} */
   let errors = {};
 
   function validate() {

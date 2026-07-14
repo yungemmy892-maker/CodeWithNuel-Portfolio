@@ -49,7 +49,7 @@ export const projects = [
     title: 'VerseID',
     category: 'fullstack',
     description: 'Shazam for Bible verses - speak or type any fragment and VerseID finds the exact book, chapter, verse and translation.',
-    longDescription: 'VerseID identifies scripture from a spoken or typed fragment in seconds. Speech is transcribed locally in the browser, then matched against multiple translations (KJV, WEB, DRA, ASV) using fuzzy text matching and semantic search, returning a result with a confidence score. Built as a calm, fast daily-use tool rather than a reference app you have to dig through.',
+    longDescription: 'VerseID identifies scripture from a spoken or typed fragment in seconds. Speech is transcribed locally in the browser, then matched against multiple translations (KJV, WEB, DRA, ASV) using fuzzy text matching and semantic search.',
     tech: ['React', 'TanStack Start', 'Django', 'MongoDB', 'FAISS', 'Web Speech API'],
     color: '#8b5cf6',
     accentColor: '#c4b5fd',
