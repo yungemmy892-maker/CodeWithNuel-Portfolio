@@ -26,7 +26,7 @@
 
 <nav class="nav" class:scrolled aria-label="Main navigation">
   <div class="nav-inner container">
-    <a href="/" class="logo" aria-label="Emmanuel — Home">
+    <a href="/" class="logo" aria-label="Emmanuel - Home">
       <span class="logo-symbol"><Icon name="hexagon" size={20} strokeWidth={2} /></span>
       <span class="logo-text">EO</span>
     </a>
